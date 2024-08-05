@@ -31,20 +31,23 @@ public class ClienteService {
     public void deletar(Integer id){
         if(this.obterClientePorId(id).isPresent())
             clienteRepository.deleteById(id);
+    }
 
+    public void deletar(Cliente cliente){
+         clienteRepository.delete(cliente);
     }
 
  
-    public boolean atualizar(Cliente cliente , Integer id){
-        Optional<Cliente> clienteById = clienteRepository.findById(id);
-        if(clienteById.isPresent()){
-            Cliente clienteFromDB = clienteById.get();
-            clienteFromDB.setNome(cliente.getNome());
-            clienteRepository.save(clienteFromDB);
+    public boolean atualizar(Cliente cliente, Integer id) {
+        return clienteRepository.findById(id).map(clienteDB -> {
+            clienteDB.setNome(cliente.getNome()); 
+            clienteDB.setCpf(cliente.getCpf());
+            
+            clienteRepository.save(clienteDB);
             return true;
-        }
-        return false;
+        }).orElse(false);
     }
+    
 
     public List<Cliente> listarTodos(){
         return clienteRepository.findAll();
