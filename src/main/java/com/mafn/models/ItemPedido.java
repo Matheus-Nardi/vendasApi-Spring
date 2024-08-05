@@ -7,10 +7,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@EqualsAndHashCode(exclude = "pedido")
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 @Table(name = "item_pedido")
 public class ItemPedido {
 

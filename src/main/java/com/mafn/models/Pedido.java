@@ -12,10 +12,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@EqualsAndHashCode(exclude = "itens")
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
