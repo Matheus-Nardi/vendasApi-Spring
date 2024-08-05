@@ -1,5 +1,6 @@
 package com.mafn.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,11 @@ public class ClienteController {
             return ResponseEntity.ok(clienteAtualizado);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Cliente>> obterClienteFiltro(Cliente clienteFiltro){
+        List<Cliente> clienteExample = clienteService.obterClienteFiltro(clienteFiltro);
+        return ResponseEntity.ok(clienteExample);
     }
 }

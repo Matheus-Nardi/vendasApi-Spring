@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.stereotype.Service;
 
 import com.mafn.models.Cliente;
@@ -80,5 +83,15 @@ public class ClienteService {
 
     public boolean clienteExistePorId(Integer id){
         return clienteRepository.existsById(id);
+    }
+
+    public List<Cliente> obterClienteFiltro(Cliente cliente){
+        ExampleMatcher matcher = ExampleMatcher
+                                    .matching()
+                                    .withIgnoreCase()
+                                    .withStringMatcher(StringMatcher.CONTAINING);
+        Example<Cliente> example = Example.of(cliente , matcher);
+        return clienteRepository.findAll(example);
+
     }
 }
