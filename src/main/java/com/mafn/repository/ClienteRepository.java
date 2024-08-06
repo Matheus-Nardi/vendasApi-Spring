@@ -1,6 +1,5 @@
 package com.mafn.repository;
 
-import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;

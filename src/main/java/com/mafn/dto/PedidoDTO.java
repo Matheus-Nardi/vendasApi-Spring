@@ -3,8 +3,6 @@ package com.mafn.dto;
 import java.math.BigDecimal;
 import java.util.Set;
 
-import com.mafn.models.ItemPedido;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
