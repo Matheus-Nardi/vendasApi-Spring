@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class ItemPedidoService {
 
-    private final ProdutoService produtoService;
+    private final ProdutoServiceImpl produtoService;
 
     private final ItemPedidoRepository itemPedidoRepository;
 
@@ -45,11 +45,7 @@ public class ItemPedidoService {
     }
 
     private Produto obterProdutoPorId(Integer id) {
-        Optional<Produto> produOptional = produtoService.obterProdutoPorId(id);
-        if (produOptional.isPresent()) {
-            return produOptional.get();
-        }
-
-        throw new NotFoundException(String.format("O produto de id %d não foi encotrado.", id ));
+       return produtoService.findById(id);
+       
     }
 }

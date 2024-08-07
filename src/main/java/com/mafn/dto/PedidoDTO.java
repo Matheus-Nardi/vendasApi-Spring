@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
  * "cliente": 1,
  * "total" : 200,
  * "itens" :
- *      [
- *          {
- *             "produto" : 1,
- *             "quantidade" : 2
- *          }
- *      ]
+ * [
+ * {
+ * "produto" : 1,
+ * "quantidade" : 2
+ * }
+ * ]
  * }
  */
 @Data
