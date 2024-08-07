@@ -15,9 +15,10 @@ C:\dev\spring\spring-curso\src\main\java\com\mafn\repository\ClienteRepository.j
 C:\dev\spring\spring-curso\src\main\java\com\mafn\repository\ItemPedidoRepository.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\repository\PedidoRepository.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\repository\ProdutoRepository.java
-C:\dev\spring\spring-curso\src\main\java\com\mafn\service\ClienteService.java
+C:\dev\spring\spring-curso\src\main\java\com\mafn\service\impl\ClienteServiceImpl.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\service\impl\PedidoServiceImpl.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\service\ItemPedidoService.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\service\PedidoService.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\service\ProdutoService.java
+C:\dev\spring\spring-curso\src\main\java\com\mafn\service\SimpleCrud.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\VendasApplication.java
