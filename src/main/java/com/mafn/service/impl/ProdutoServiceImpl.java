@@ -1,4 +1,4 @@
-package com.mafn.service;
+package com.mafn.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mafn.exception.NotFoundException;
 import com.mafn.models.Produto;
 import com.mafn.repository.ProdutoRepository;
+import com.mafn.service.SimpleCrud;
 
 import lombok.extern.log4j.Log4j2;
 

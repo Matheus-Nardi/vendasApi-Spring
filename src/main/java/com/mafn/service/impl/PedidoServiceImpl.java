@@ -7,7 +7,9 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mafn.dto.ItemPedidoResponseDTO;
 import com.mafn.dto.PedidoDTO;
+import com.mafn.dto.PedidoResponseDTO;
 import com.mafn.exception.NotFoundException;
 import com.mafn.models.Cliente;
 import com.mafn.models.ItemPedido;
@@ -46,6 +48,7 @@ public class PedidoServiceImpl implements PedidoService {
         return pedido;
     }
 
+
     private Cliente setPedidoCliente(PedidoDTO pedidoDto, Pedido pedido) {
         Integer idCliente = pedidoDto.getCliente();
         Cliente cliente = clienteService.findById(idCliente);
@@ -53,6 +56,21 @@ public class PedidoServiceImpl implements PedidoService {
             return cliente;
         }
         throw new NotFoundException(String.format("O cliente de id %d não foi encontrado.", idCliente));
+    }
+
+
+    @Override
+    public PedidoResponseDTO obterDetalhesPedido(Integer id) {
+       Optional<Pedido> pedidoOptional = pedidoRepository.findByIdFetchItens(id);
+       if(pedidoOptional.isPresent()){
+            Pedido pedido = pedidoOptional.get();
+            Cliente cliente = pedido.getCliente();
+            Set<ItemPedidoResponseDTO> itens = itemPedidoService.toItemResponseDTO(pedido.getItens());
+            return new PedidoResponseDTO(id, cliente.getCpf(), cliente.getNome(), pedido.getTotal(), itens , pedido.getDataPedido());
+       }
+
+       throw new NotFoundException(String.format("O pedido de id %d não foi encontrado", id));
+       
     }
 
 }

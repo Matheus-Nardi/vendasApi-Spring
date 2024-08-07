@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mafn.models.Produto;
-import com.mafn.service.ProdutoServiceImpl;
+import com.mafn.service.impl.ProdutoServiceImpl;
 
 import lombok.extern.log4j.Log4j2;
 

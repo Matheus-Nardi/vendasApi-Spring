@@ -1,18 +1,20 @@
 package com.mafn.service;
 
-import java.util.Optional;
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.mafn.dto.ItemPedidoDTO;
-import com.mafn.exception.NotFoundException;
+import com.mafn.dto.ItemPedidoResponseDTO;
 import com.mafn.exception.RegraNegocioException;
 import com.mafn.models.ItemPedido;
 import com.mafn.models.Pedido;
 import com.mafn.models.Produto;
 import com.mafn.repository.ItemPedidoRepository;
+import com.mafn.service.impl.ProdutoServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -45,7 +47,18 @@ public class ItemPedidoService {
     }
 
     private Produto obterProdutoPorId(Integer id) {
-       return produtoService.findById(id);
-       
+        return produtoService.findById(id);
+
+    }
+
+    public Set<ItemPedidoResponseDTO> toItemResponseDTO(Set<ItemPedido> itemPedidos) {
+        if (CollectionUtils.isEmpty(itemPedidos)) {
+            return Collections.emptySet();
+        }
+
+        return itemPedidos.stream()
+                .map(item -> new ItemPedidoResponseDTO(item.getProduto().getDescricao(), item.getProduto().getPreco(),
+                        item.getQuantidade()))
+                .collect(Collectors.toSet());
     }
 }
