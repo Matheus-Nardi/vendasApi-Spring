@@ -1,7 +1,8 @@
 create table
     cliente (
         id integer not null primary key auto_increment,
-        nome varchar(100)
+        nome varchar(100),
+        cpf varchar(11)
     );
 
 create table
@@ -16,6 +17,7 @@ create table
         id integer not null primary key auto_increment,
         cliente_id integer references cliente (id),
         data_pedido timestamp,
+        status_pedido varchar(20) , 
         total numeric(20, 2)
     );
 
