@@ -2,6 +2,7 @@ package com.mafn.infra;
 
 import java.time.LocalDate;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -40,4 +41,18 @@ public class ApplicationControllerAdvice extends ResponseEntityExceptionHandler 
                     .build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiErrors);
     }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    private ResponseEntity<ApiErrors> handleDataViolanetionException(DataIntegrityViolationException ex){
+        String msgError = "Já existe um cliente cadastrado com este CPF.";
+        ApiErrors apiErrors = ApiErrors.builder()
+                    .timestamp(LocalDate.now())
+                    .status(HttpStatus.BAD_REQUEST.value())
+                    .path(HttpStatus.BAD_REQUEST.getReasonPhrase())
+                    .error(msgError)
+                    .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiErrors);
+    }
+    
 }
