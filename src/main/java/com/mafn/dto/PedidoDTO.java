@@ -1,6 +1,5 @@
 package com.mafn.dto;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +25,8 @@ import lombok.NoArgsConstructor;
 public class PedidoDTO {
 
     private Integer cliente;
-    private BigDecimal total;
     private Set<ItemPedidoDTO> itens;
 
+
+    
 }

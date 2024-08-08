@@ -9,4 +9,6 @@ public interface PedidoService {
     Pedido salvar(PedidoDTO pedidoDto);
 
     PedidoResponseDTO obterDetalhesPedido(Integer id);
+
+    void cancelarPedido(Integer id);
 }

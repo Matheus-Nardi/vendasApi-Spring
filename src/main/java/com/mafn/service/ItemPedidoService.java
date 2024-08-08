@@ -1,5 +1,6 @@
 package com.mafn.service;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -60,5 +61,16 @@ public class ItemPedidoService {
                 .map(item -> new ItemPedidoResponseDTO(item.getProduto().getDescricao(), item.getProduto().getPreco(),
                         item.getQuantidade()))
                 .collect(Collectors.toSet());
+    }
+
+    public BigDecimal calcularTotal(Set<ItemPedido> itens) {
+        BigDecimal total = new BigDecimal(0);
+        for (ItemPedido itemPedido : itens) {
+            Produto produto = itemPedido.getProduto();
+            BigDecimal preco = produto.getPreco();
+            BigDecimal quantidade = BigDecimal.valueOf(itemPedido.getQuantidade());
+            total = total.add(preco.multiply(quantidade));
+        }
+        return total;
     }
 }

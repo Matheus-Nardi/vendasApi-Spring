@@ -29,7 +29,7 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente" , fetch = FetchType.LAZY)
     private Set<Pedido> pedidos;
 
-    @Column(length = 11)
+    @Column(length = 11 , unique = true)
     private String cpf;
 
 }

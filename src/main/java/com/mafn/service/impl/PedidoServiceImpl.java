@@ -11,9 +11,11 @@ import com.mafn.dto.ItemPedidoResponseDTO;
 import com.mafn.dto.PedidoDTO;
 import com.mafn.dto.PedidoResponseDTO;
 import com.mafn.exception.NotFoundException;
+import com.mafn.exception.RegraNegocioException;
 import com.mafn.models.Cliente;
 import com.mafn.models.ItemPedido;
 import com.mafn.models.Pedido;
+import com.mafn.models.enums.StatusPedido;
 import com.mafn.repository.PedidoRepository;
 import com.mafn.service.ItemPedidoService;
 import com.mafn.service.PedidoService;
@@ -37,9 +39,10 @@ public class PedidoServiceImpl implements PedidoService {
         Cliente cliente = setPedidoCliente(pedidoDto, pedido);
         Set<ItemPedido> itensPedidos = itemPedidoService.itemDTOtoItemPedido(pedido, pedidoDto.getItens());
 
-        pedido.setTotal(pedidoDto.getTotal());
+        pedido.setTotal(itemPedidoService.calcularTotal(itensPedidos));
         pedido.setDataPedido(LocalDate.now());
         pedido.setCliente(cliente);
+        pedido.setStatus(StatusPedido.REALIZADO);
 
         pedidoRepository.save(pedido);
         itemPedidoService.salvarTodos(itensPedidos);
@@ -48,29 +51,35 @@ public class PedidoServiceImpl implements PedidoService {
         return pedido;
     }
 
-
     private Cliente setPedidoCliente(PedidoDTO pedidoDto, Pedido pedido) {
         Integer idCliente = pedidoDto.getCliente();
-        Cliente cliente = clienteService.findById(idCliente);
-        if (cliente != null) {
-            return cliente;
-        }
-        throw new NotFoundException(String.format("O cliente de id %d não foi encontrado.", idCliente));
+        return clienteService.findById(idCliente);
     }
-
 
     @Override
     public PedidoResponseDTO obterDetalhesPedido(Integer id) {
-       Optional<Pedido> pedidoOptional = pedidoRepository.findByIdFetchItens(id);
-       if(pedidoOptional.isPresent()){
+        Optional<Pedido> pedidoOptional = pedidoRepository.findByIdFetchItens(id);
+        if (pedidoOptional.isPresent()) {
             Pedido pedido = pedidoOptional.get();
             Cliente cliente = pedido.getCliente();
             Set<ItemPedidoResponseDTO> itens = itemPedidoService.toItemResponseDTO(pedido.getItens());
-            return new PedidoResponseDTO(id, cliente.getCpf(), cliente.getNome(), pedido.getTotal(), itens , pedido.getDataPedido());
-       }
+            return new PedidoResponseDTO(id, cliente.getCpf(), cliente.getNome(), pedido.getTotal(),
+                    pedido.getDataPedido(), pedido.getStatus(), itens);
+        }
 
-       throw new NotFoundException(String.format("O pedido de id %d não foi encontrado", id));
-       
+        throw new NotFoundException(String.format("O pedido de id %d não foi encontrado", id));
+
     }
 
+    @Override
+    @Transactional
+    public void cancelarPedido(Integer id) {
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(String.format("O pedido de id %d não foi encontrado", id)));
+        if(pedido.getStatus().equals(StatusPedido.CANCELADO)){
+            throw new RegraNegocioException("O pedido já foi cancelado.");
+        }
+        pedido.setStatus(StatusPedido.CANCELADO);
+        pedidoRepository.save(pedido);
+    }
 }
