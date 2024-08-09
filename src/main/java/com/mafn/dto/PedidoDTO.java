@@ -2,6 +2,9 @@ package com.mafn.dto;
 
 import java.util.Set;
 
+import com.mafn.validation.NotEmptyCollection;
+
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +12,6 @@ import lombok.NoArgsConstructor;
 /**
  * {
  * "cliente": 1,
- * "total" : 200,
  * "itens" :
  * [
  * {
@@ -24,9 +26,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PedidoDTO {
 
+    @NotNull(message = "{campo.codigo-cliente.obrigatorio}")
     private Integer cliente;
+    @NotEmptyCollection(message = "{campo.itens-pedido.obrigatorio}")
     private Set<ItemPedidoDTO> itens;
 
-
-    
 }

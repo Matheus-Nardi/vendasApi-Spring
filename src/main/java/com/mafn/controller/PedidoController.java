@@ -18,6 +18,7 @@ import com.mafn.dto.PedidoResponseDTO;
 import com.mafn.models.Pedido;
 import com.mafn.service.PedidoService;
 
+import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -32,7 +33,7 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<String> salvarPedido(@RequestBody PedidoDTO pedidoDTO) {
+    public ResponseEntity<String> salvarPedido(@RequestBody @Valid PedidoDTO pedidoDTO) {
         log.info("Requisição do tipo POST para baseURL/pedidos");
         Pedido pedido = pedidoService.salvar(pedidoDTO);
         return ResponseEntity.status(CREATED)

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mafn.models.Cliente;
 import com.mafn.service.impl.ClienteServiceImpl;
 
+import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -41,8 +42,7 @@ public class ClienteController {
     }
 
     @PostMapping
-
-    public ResponseEntity<Cliente> saveCliente(@RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> saveCliente(@RequestBody @Valid Cliente cliente) {
         log.info("Requisão do tipo POST para baseURL/clientes");
         clienteService.save(cliente);
         return ResponseEntity.status(CREATED).body(cliente);
@@ -56,7 +56,7 @@ public class ClienteController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Cliente> updateCliente(@PathVariable Integer id, @RequestBody Cliente clienteAtualizado) {
+    public ResponseEntity<Cliente> updateCliente(@PathVariable Integer id, @RequestBody @Valid Cliente clienteAtualizado) {
         log.info("Requisão do tipo PUT para baseURL/clientes/{}", id);
         clienteService.update(id, clienteAtualizado);
         return ResponseEntity.noContent().build();

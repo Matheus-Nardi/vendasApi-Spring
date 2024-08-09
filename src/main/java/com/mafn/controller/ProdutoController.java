@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mafn.models.Produto;
 import com.mafn.service.impl.ProdutoServiceImpl;
 
+import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -32,7 +33,7 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<Produto> saveProduto(@RequestBody Produto produto) {
+    public ResponseEntity<Produto> saveProduto(@RequestBody @Valid Produto produto) {
         log.info("Requisição do tipo POST para baseURL/produtos");
         produtoService.save(produto);
         return ResponseEntity.status(CREATED).body(produto);
@@ -53,7 +54,7 @@ public class ProdutoController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Produto> atualizarProduto(@PathVariable Integer id, @RequestBody Produto produtoAtualizado) {
+    public ResponseEntity<Produto> atualizarProduto(@PathVariable Integer id, @RequestBody @Valid Produto produtoAtualizado) {
         log.info("Requisição do tipo PUT para baseURL/produtos/{}", id);
         produtoService.update(id, produtoAtualizado);
         return ResponseEntity.noContent().build();
