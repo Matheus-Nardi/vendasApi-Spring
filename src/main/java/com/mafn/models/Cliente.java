@@ -22,12 +22,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cliente {
+public class Cliente  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String nome;
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
@@ -37,5 +38,4 @@ public class Cliente {
     @NotEmpty(message = "{campo.cpf.obrigatorio}")
     @CPF(message = "{campo.cpf.invalido}")
     private String cpf;
-
 }
