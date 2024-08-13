@@ -20,7 +20,8 @@ C:\dev\spring\spring-curso\src\main\java\com\mafn\repository\ClienteRepository.j
 C:\dev\spring\spring-curso\src\main\java\com\mafn\repository\ItemPedidoRepository.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\repository\PedidoRepository.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\repository\ProdutoRepository.java
-C:\dev\spring\spring-curso\src\main\java\com\mafn\security\Role.java
+C:\dev\spring\spring-curso\src\main\java\com\mafn\security\AdmAuthenticationProvider.java
+C:\dev\spring\spring-curso\src\main\java\com\mafn\security\CustomFilter.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\service\impl\ClienteServiceImpl.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\service\impl\PedidoServiceImpl.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\service\impl\ProdutoServiceImpl.java

@@ -5,6 +5,7 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,8 +34,8 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<String> salvarPedido(@RequestBody @Valid PedidoDTO pedidoDTO) {
-        log.info("Requisição do tipo POST para baseURL/pedidos");
+    public ResponseEntity<String> salvarPedido(@RequestBody @Valid PedidoDTO pedidoDTO , Authentication authentication) {
+        log.info("Requisição do tipo POST para baseURL/pedidos feita por {}" , authentication.getName());
         Pedido pedido = pedidoService.salvar(pedidoDTO);
         return ResponseEntity.status(CREATED)
                 .body(String.format("Pedido criado com sucesso , seu código é: %d", pedido.getId()));
