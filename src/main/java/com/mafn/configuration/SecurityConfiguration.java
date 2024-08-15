@@ -11,27 +11,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.mafn.infra.security.ClienteDetailService;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
 
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, UserDetailsService userDetailsService)
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)
             throws Exception {
 
         return httpSecurity
                 .csrf(custum -> custum.disable())
                 .authorizeHttpRequests(customizer -> {
-                    customizer.requestMatchers(HttpMethod.POST, "/clientes/**").permitAll();
-                    customizer.requestMatchers("/clientes/**").hasAnyRole("ADMIN");
-                    customizer.requestMatchers("/pedidos/**").hasAnyRole("USER" , "ADMIN");
-                    customizer.requestMatchers("/produtos/**").hasRole("ADMIN");
-                    customizer.anyRequest().authenticated();
+                    customizer.anyRequest().permitAll();
                 })
-                .httpBasic(Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults())
-                .userDetailsService(userDetailsService)
                 .build();
     }
 

@@ -34,8 +34,8 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<String> salvarPedido(@RequestBody @Valid PedidoDTO pedidoDTO , Authentication authentication) {
-        log.info("Requisição do tipo POST para baseURL/pedidos feita por {}" , authentication.getName());
+    public ResponseEntity<String> salvarPedido(@RequestBody @Valid PedidoDTO pedidoDTO ) {
+        log.info("Requisição do tipo POST para baseURL/pedidos feita por {}" );
         Pedido pedido = pedidoService.salvar(pedidoDTO);
         return ResponseEntity.status(CREATED)
                 .body(String.format("Pedido criado com sucesso , seu código é: %d", pedido.getId()));

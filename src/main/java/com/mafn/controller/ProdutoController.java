@@ -35,8 +35,8 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<Produto> saveProduto(@RequestBody @Valid Produto produto , Authentication authentication) {
-        log.info("Requisição do tipo POST para baseURL/produtos feita por {}" , authentication.getName());
+    public ResponseEntity<Produto> saveProduto(@RequestBody @Valid Produto produto ) {
+        log.info("Requisição do tipo POST para baseURL/produtos");
         produtoService.save(produto);
         return ResponseEntity.status(CREATED).body(produto);
     }
@@ -49,15 +49,15 @@ public class ProdutoController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Produto> deletarProduto(@PathVariable Integer id, Authentication authentication) {
-        log.info("Requisição do tipo DELETE para baseURL/produtos/{} feita por {}", id , authentication.getName());
+    public ResponseEntity<Produto> deletarProduto(@PathVariable Integer id) {
+        log.info("Requisição do tipo DELETE para baseURL/produtos/{}", id);
         produtoService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Produto> atualizarProduto(@PathVariable Integer id, @RequestBody @Valid Produto produtoAtualizado , Authentication authentication) {
-        log.info("Requisição do tipo PUT para baseURL/produtos/{} feita por {}", id , authentication);
+    public ResponseEntity<Produto> atualizarProduto(@PathVariable Integer id, @RequestBody @Valid Produto produtoAtualizado ) {
+        log.info("Requisição do tipo PUT para baseURL/produtos/{} feita por {}", id );
         produtoService.update(id, produtoAtualizado);
         return ResponseEntity.noContent().build();
     }
