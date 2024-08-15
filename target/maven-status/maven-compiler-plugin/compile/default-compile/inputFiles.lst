@@ -9,8 +9,9 @@ C:\dev\spring\spring-curso\src\main\java\com\mafn\dto\PedidoDTO.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\dto\PedidoResponseDTO.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\exception\NotFoundException.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\exception\RegraNegocioException.java
-C:\dev\spring\spring-curso\src\main\java\com\mafn\infra\ApiErrors.java
-C:\dev\spring\spring-curso\src\main\java\com\mafn\infra\ApplicationControllerAdvice.java
+C:\dev\spring\spring-curso\src\main\java\com\mafn\infra\exception_handler\ApiErrors.java
+C:\dev\spring\spring-curso\src\main\java\com\mafn\infra\exception_handler\ApplicationControllerAdvice.java
+C:\dev\spring\spring-curso\src\main\java\com\mafn\infra\security\ClienteDetailService.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\models\Cliente.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\models\enums\StatusPedido.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\models\ItemPedido.java
@@ -20,8 +21,6 @@ C:\dev\spring\spring-curso\src\main\java\com\mafn\repository\ClienteRepository.j
 C:\dev\spring\spring-curso\src\main\java\com\mafn\repository\ItemPedidoRepository.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\repository\PedidoRepository.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\repository\ProdutoRepository.java
-C:\dev\spring\spring-curso\src\main\java\com\mafn\security\AdmAuthenticationProvider.java
-C:\dev\spring\spring-curso\src\main\java\com\mafn\security\CustomFilter.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\service\impl\ClienteServiceImpl.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\service\impl\PedidoServiceImpl.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\service\impl\ProdutoServiceImpl.java

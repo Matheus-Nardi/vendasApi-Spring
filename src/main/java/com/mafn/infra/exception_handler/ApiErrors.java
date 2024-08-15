@@ -1,4 +1,4 @@
-package com.mafn.infra;
+package com.mafn.infra.exception_handler;
 
 import java.time.LocalDate;
 import java.util.List;

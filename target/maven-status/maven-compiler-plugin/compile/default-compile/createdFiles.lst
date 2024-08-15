@@ -1,6 +1,5 @@
 com\mafn\service\PedidoService.class
 com\mafn\dto\PedidoDTO.class
-com\mafn\infra\ApiErrors.class
 com\mafn\exception\RegraNegocioException.class
 com\mafn\models\Produto.class
 com\mafn\repository\ClienteRepository.class
@@ -17,9 +16,7 @@ com\mafn\service\ItemPedidoService.class
 com\mafn\dto\ItemPedidoDTO.class
 com\mafn\models\enums\StatusPedido.class
 com\mafn\repository\ItemPedidoRepository.class
-com\mafn\infra\ApplicationControllerAdvice.class
 com\mafn\models\Pedido.class
-com\mafn\infra\ApiErrors$ApiErrorsBuilder.class
 com\mafn\repository\ProdutoRepository.class
 com\mafn\service\SimpleCrud.class
 com\mafn\dto\ItemPedidoResponseDTO.class

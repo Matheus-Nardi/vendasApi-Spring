@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,17 +22,20 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class ClienteServiceImpl implements SimpleCrud<Cliente> {
 
+    private PasswordEncoder passwordEncoder;
     private ClienteRepository clienteRepository;
 
     @Autowired
-    public ClienteServiceImpl(ClienteRepository clienteRepository) {
+    public ClienteServiceImpl(ClienteRepository clienteRepository,PasswordEncoder passwordEncoder) {
         this.clienteRepository = clienteRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     @Transactional
     public void save(Cliente entity) {
         log.info("Salvando um novo cliente.");
+        entity.setSenha(passwordEncoder.encode(entity.getSenha()));
         clienteRepository.save(entity);
     }
 
@@ -40,6 +44,13 @@ public class ClienteServiceImpl implements SimpleCrud<Cliente> {
         log.info("Buscando por um cliente de id {}", id);
         return clienteRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Não foi possível encontrar um cliente com id: " + id));
+    }
+
+    
+    public Optional<Cliente> findByCpf(String cpf) {
+        log.info("Buscando por um cliente de cpf {}", cpf);
+        return clienteRepository.findByCpf(cpf);
+                
     }
 
     @Override
