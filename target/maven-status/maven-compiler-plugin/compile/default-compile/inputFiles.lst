@@ -3,6 +3,7 @@ C:\dev\spring\spring-curso\src\main\java\com\mafn\configuration\SecurityConfigur
 C:\dev\spring\spring-curso\src\main\java\com\mafn\controller\ClienteController.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\controller\PedidoController.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\controller\ProdutoController.java
+C:\dev\spring\spring-curso\src\main\java\com\mafn\dto\ClienteRequestDTO.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\dto\ItemPedidoDTO.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\dto\ItemPedidoResponseDTO.java
 C:\dev\spring\spring-curso\src\main\java\com\mafn\dto\PedidoDTO.java

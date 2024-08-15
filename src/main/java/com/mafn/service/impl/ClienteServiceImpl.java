@@ -102,4 +102,9 @@ public class ClienteServiceImpl implements SimpleCrud<Cliente> {
 
     }
 
+
+    public boolean existsByNome(String nome){
+        return clienteRepository.existsByNome(nome);
+    }
+
 }

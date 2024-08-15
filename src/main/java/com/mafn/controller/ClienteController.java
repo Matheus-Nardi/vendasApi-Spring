@@ -6,6 +6,7 @@ import static org.springframework.http.HttpStatus.OK;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mafn.dto.ClienteRequestDTO;
 import com.mafn.models.Cliente;
 import com.mafn.service.impl.ClienteServiceImpl;
 
@@ -28,10 +30,13 @@ public class ClienteController {
 
    
     private ClienteServiceImpl clienteService;
+
+    private PasswordEncoder passwordEncoder;
     
 
-    public ClienteController(ClienteServiceImpl clienteService) {
+    public ClienteController(ClienteServiceImpl clienteService, PasswordEncoder passwordEncoder) {
         this.clienteService = clienteService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping(value = "/{id}")
@@ -42,8 +47,13 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> saveCliente(@RequestBody @Valid Cliente cliente) {
+    public ResponseEntity<Cliente> saveCliente(@RequestBody @Valid ClienteRequestDTO body) {
         log.info("Requisão do tipo POST para baseURL/clientes");
+        Cliente cliente = Cliente.builder()
+                            .nome(body.getNome())
+                            .cpf(body.getCpf())
+                            .senha(passwordEncoder.encode(body.getSenha()))
+                            .build();
         clienteService.save(cliente);
         return ResponseEntity.status(CREATED).body(cliente);
     }

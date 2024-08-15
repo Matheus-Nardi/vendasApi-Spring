@@ -1,9 +1,5 @@
 package com.mafn.infra.security;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
