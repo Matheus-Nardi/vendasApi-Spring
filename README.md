@@ -75,3 +75,5 @@ Consulte a documentação de acordo com o recurso desejado:
 
 [Pedidos](https://github.com/Matheus-Nardi/vendasApi-Spring/blob/main/pedidosEndpoitns.md)
 
+Ou, acesse o [Swagger Hub](https://app.swaggerhub.com/apis/MATHEUZNARDI/spring-vendas_api/v1.0)
+
