@@ -18,7 +18,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 
     boolean existsById(Integer id);
 
-    @Query(value = "select c from Cliente c where c.nome like :nome")
+    @Query(value = "select c from Cliente c where c.nome like %:nome%")
     List<Cliente> encontrarPorNome(@Param("nome") String nome);
 
     void deleteByNome(String nome);
